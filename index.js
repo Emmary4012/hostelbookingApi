@@ -8,23 +8,12 @@ import roomsRoute from  './routes/rooms.js';
 import usersRoute from  './routes/users.js';
 import cookieParser from "cookie-parser";
 import hostelsRoute from "./routes/hostels.js";
-// import path from 'path';
-// import { fileURLToPath } from 'url';
+import hostelRoomsRoute from "./routes/hostelRooms.js";
 
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
-// const paths = __dirname + "/api/client/build";
 const app = express();
 dotenv.config();
-app.use(
-  cors({
-  origin:"*",
-})
-);
 
-const connect = async () => {
-    
+const connect = async () => {    
 try {
     await mongoose.connect(process.env.MONGO);
     console.log("Connected to mongoDB.")
@@ -33,6 +22,7 @@ try {
   }
 };
 
+app.use(cors({origin:"*",}));
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(express.json());
@@ -42,16 +32,13 @@ app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/hostels", hostelsRoute);
 app.use("/api/rooms", roomsRoute);
-
-// app.use(express.static(paths));
-// app.get('/', (req,res,next)=> {
-//    res.sendFile(paths + "/index.html");
-//   res.send("From function");
-//   console.log("From function");
-// });
+app.use("/api/hostelrooms", hostelRoomsRoute);
+app.use("/api/payment", async(req,res)=>{
+    const total = req.body.amount;
+    console.log("Payment request of usx", total ,"received");
+});
 
 const PORT = process.env.PORT || 5000;
-
 const server = app.listen(PORT, () => {
   connect();
   console.log("server is running on port", server.address().port);

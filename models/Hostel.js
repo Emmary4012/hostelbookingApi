@@ -8,7 +8,11 @@ const HostelSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    city: {
+    campus: {
+        type: String,
+        required: true,
+    },
+    village: {
         type: String,
         required: true,
     },
@@ -17,34 +21,27 @@ const HostelSchema = mongoose.Schema({
         required: true,
     },
     distance: {
-        type: String,
-        required: true,
+        type: String
     },
     img: {
-        type: [String],
-      
+        type: [String]
    },
     title: {
-        type: String,
-        required: true,
+        type: String
     },
     desc: {
-        type: String,
-        required: true,
+        type: String
     },
     rating: {
         type: String,
-        //required: true,
         min:0,
         max:5
     },
     rooms: {
-         type: [String],
-       
+         type: [String] 
     },
     cheapestPrice: {
-        type: Number, 
-        required: true,
+        type: Number
     },
     featured: {
         type: Boolean,

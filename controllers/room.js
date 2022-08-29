@@ -77,7 +77,7 @@ export const getRoom = async (req,res)=>{
         const room = await Hotel.findById(req.params.id);
         res.status(200).json(room);
     } catch (err) {
-        next(err);
+        next(createError(403,"Try again inorder to get the Room"));
     }
    
 }
@@ -88,7 +88,7 @@ export const getRooms = async (req,res,next)=>{
         const rooms = await Room.find()
         res.status(200).json(rooms)
     } catch (err) {
-        next(err);
+        next(createError(403,"Try again inorder to get the Rooms"));
     }
    
 }

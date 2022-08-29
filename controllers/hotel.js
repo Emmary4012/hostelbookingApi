@@ -6,7 +6,7 @@ import { createError } from "../Utils/error.js";
 export const createHotel = async (req,res)=>{
 
     const newHotel = Hotel(req.body);
-    console.log("Hotel being created");
+    
     try {
         const savedHotel = await newHotel.save();
         res.status(200).json(savedHotel); console.log("Hotel created");

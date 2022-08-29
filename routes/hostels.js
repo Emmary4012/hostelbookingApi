@@ -1,5 +1,5 @@
 import express from "express";
-import { createHostel, deleteHostel, getHostels, getHostel, updateHostel, countByCity, countByType, getHostelRooms } from "../controllers/hostel.js";
+import { createHostel, deleteHostel, getHostels, getHostel, updateHostel, countByType, getHostelRooms, countByCampuses } from "../controllers/hostel.js";
 import { verifyAdmin } from "../Utils/verifyToken.js";
 const hostelsRoute = express.Router();
 
@@ -19,7 +19,7 @@ hostelsRoute.get("/find/:id", getHostel);
 
 //GET ALL
 hostelsRoute.get("/", getHostels);
-hostelsRoute.get("/countByCity", countByCity);
+hostelsRoute.get("/countByCampuses", countByCampuses);
 hostelsRoute.get("/countByType", countByType);
 hostelsRoute.get("/room/:id", getHostelRooms);
 
