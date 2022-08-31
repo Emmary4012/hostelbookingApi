@@ -1,16 +1,16 @@
-import Hostel from "../models/Hostel.js";
+import Apartment from "../models/Apartment.js";
 import Room from "../models/Room.js";
 import { createError } from "../Utils/error.js";
 
 export const createRoom = async (req,res,next)=>{
 
-    const hostelId = req.params.hostelid;    
+    const ApartmentId = req.params.Apartmentid;    
     const newRoom = new Room(req.body);
   
     try {
         const savedRoom = await newRoom.save();
         try {
-            await Hostel.findByIdAndUpdate(hostelId, {
+            await Apartment.findByIdAndUpdate(ApartmentId, {
                 $push: {rooms: savedRoom._id},
             })
         } catch (err) {
@@ -52,21 +52,21 @@ export const updateRoomAvailability = async (req, res, next) => {
   };
 
 export const deleteRoom = async (req,res,next)=>{
-    const hostelId = req.params.hostelid; 
+    const ApartmentId = req.params.Apartmentid; 
     try {
         await Room.findByIdAndDelete(req.params.id);
 
         try {
-            await Hostel.findByIdAndUpdate(hostelId, {
+            await Apartment.findByIdAndUpdate(ApartmentId, {
                 $pull: {rooms: req.params.id},
             });
         } catch (err) {
-            next(createError(403,"Couldn't find the Hostel. Please try again."))
+            next(createError(403,"Couldn't find the Apartment. Please try again."))
         }
 
         res.status(200).json("Room was successfully deleted");
     } catch (err) {
-        next(createError(403,"Couldn't find the Hostel. Please try again."))
+        next(createError(403,"Couldn't find the Apartment. Please try again."))
     }
    
 }
@@ -74,7 +74,7 @@ export const deleteRoom = async (req,res,next)=>{
 export const getRoom = async (req,res)=>{
 
     try {
-        const room = await Hostel.findById(req.params.id);
+        const room = await Apartment.findById(req.params.id);
         res.status(200).json(room);
     } catch (err) {
         next(createError(403,"Sorry, could't get the room. Please try again inorder to get the Room"));
