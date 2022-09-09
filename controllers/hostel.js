@@ -69,18 +69,18 @@ export const countByCampuses = async (req,res,next)=>{
 
 export const countByType = async (req,res,next)=>{ 
     try {
-        const hostelCount = await Hostel.countDocuments({type: "hostel"});
-        const apartmentCount = await Hostel.countDocuments({type: "apartment"});
-        const rentalCount = await  Hostel.countDocuments({type: "rental"});
-        const hotelCount = await Hostel.countDocuments({type: "hotel"});
-        const recreationCount = await Hostel.countDocuments({type: "recreation"});
+        const hostelCount = await Hostel.countDocuments({type: "Hostel"});
+        const apartmentCount = await Hostel.countDocuments({type: "Apartment"});
+        const rentalCount = await  Hostel.countDocuments({type: "Rental"});
+        const hotelCount = await Hostel.countDocuments({type: "Hotel"});
+        const recreationCount = await Hostel.countDocuments({type: "Recreation"});
         
         res.status(200).json([
-            { type: "hostels", count: hostelCount},
-            { type: "apartments", count: apartmentCount},
-            { type: "rentals", count: rentalCount},
-            { type: "hotels", count: hotelCount},
-            { type: "recreation centers", count: recreationCount},
+            { type: "Hostels", count: hostelCount},
+            { type: "Apartments", count: apartmentCount},
+            { type: "Rentals", count: rentalCount},
+            { type: "Hotels", count: hotelCount},
+            { type: "Recreation Centers", count: recreationCount},
         ]);
     } catch (err) {
         next(createError(403, "Sorry, couldn't count properties by type. Please try again"));

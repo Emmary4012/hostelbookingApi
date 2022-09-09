@@ -1,5 +1,5 @@
 import express from "express";
-import { createRental, deleteRental, getRentals, getRental, updateRental, countByType, getRentalRooms, countByCampuses } from "../controllers/Rental.js";
+import { createRental, deleteRental, getRentals, getRental, updateRental, countByType, getRentalRooms, countByCampuses } from "../controllers/rental.js";
 import { verifyAdmin } from "../Utils/verifyToken.js";
 const rentalsRoute = express.Router();
 
