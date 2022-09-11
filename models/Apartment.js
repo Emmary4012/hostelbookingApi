@@ -47,6 +47,9 @@ const ApartmentSchema = mongoose.Schema({
     rooms: {
          type: [String] 
     },
+    roomsdesc: {
+        type: String
+    },
     cheapestPrice: {
         type: Number
     },

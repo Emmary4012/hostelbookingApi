@@ -4,21 +4,21 @@ import { createError } from "../Utils/error.js";
 
 export const createRoom = async (req,res,next)=>{
 
-    const hostelId = req.params.hostelid;    
+    const hostelId = req.params['propertyId'];    
     const newRoom = new Room(req.body);
-  
     try {
         const savedRoom = await newRoom.save();
         try {
             await Hostel.findByIdAndUpdate(hostelId, {
                 $push: {rooms: savedRoom._id},
-            })
+            });
+            console.log("Rooms pushed") 
         } catch (err) {
-            next(createError(403, "Sorry, couldn't push the room. Please try again")); 
+            next(createError(403, "Sorry, couldn't push the Hostel room. Please try again")); 
         }
         res.status(200).json(savedRoom);
     } catch (error) {
-        next(createError(403, "Sorry, room creation failed. Please try again")); 
+        next(createError(403, "Sorry, Hostel room creation failed. Please try again")); 
     }
    
 }

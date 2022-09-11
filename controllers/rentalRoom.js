@@ -4,13 +4,13 @@ import { createError } from "../Utils/error.js";
 
 export const createRoom = async (req,res,next)=>{
 
-    const RentalId = req.params.Rentalid;    
+    const d = req.body['propertyId'];    
     const newRoom = new Room(req.body);
   
     try {
         const savedRoom = await newRoom.save();
         try {
-            await Rental.findByIdAndUpdate(RentalId, {
+            await Rental.findByIdAndUpdate(d, {
                 $push: {rooms: savedRoom._id},
             })
         } catch (err) {
@@ -35,10 +35,10 @@ export const updateRoom = async (req,res)=>{
    
 }
 
-export const updateRoomAvailability = async (req, res, next) => { 
-    try {
+export const updateRoomAvailability = async (req, res, next) => {
+    try {console.log(req.params['roomId'])
       await Room.updateOne(
-        { "roomNumbers._id": req.params.id },
+        { "roomNumbers._id": req.params['roomId'] },
         {
           $push: {
             "roomNumbers.$.unavailableDates": req.body.dates
@@ -52,12 +52,12 @@ export const updateRoomAvailability = async (req, res, next) => {
   };
 
 export const deleteRoom = async (req,res,next)=>{
-    const RentalId = req.params.Rentalid; 
+    const rentalId = req.params.rentalid; 
     try {
         await Room.findByIdAndDelete(req.params.id);
 
         try {
-            await Rental.findByIdAndUpdate(RentalId, {
+            await Rental.findByIdAndUpdate(rentalId, {
                 $pull: {rooms: req.params.id},
             });
         } catch (err) {

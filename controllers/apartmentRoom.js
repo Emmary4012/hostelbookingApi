@@ -4,13 +4,13 @@ import { createError } from "../Utils/error.js";
 
 export const createRoom = async (req,res,next)=>{
 
-    const ApartmentId = req.params.Apartmentid;    
+    const apartmentId = req.params['propertyId'];    
     const newRoom = new Room(req.body);
   
     try {
         const savedRoom = await newRoom.save();
         try {
-            await Apartment.findByIdAndUpdate(ApartmentId, {
+            await Apartment.findByIdAndUpdate(apartmentId, {
                 $push: {rooms: savedRoom._id},
             })
         } catch (err) {

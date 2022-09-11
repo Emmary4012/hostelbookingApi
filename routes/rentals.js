@@ -1,5 +1,5 @@
 import express from "express";
-import { createRental, deleteRental, getRentals, getRental, updateRental, countByType, getRentalRooms, countByCampuses } from "../controllers/rental.js";
+import { createRental, deleteRental, getRentals, getRental, updateRental, getRentalRooms } from "../controllers/rental.js";
 import { verifyAdmin } from "../Utils/verifyToken.js";
 const rentalsRoute = express.Router();
 
@@ -19,8 +19,6 @@ rentalsRoute.get("/find/:id", getRental);
 
 //GET ALL
 rentalsRoute.get("/", getRentals);
-rentalsRoute.get("/countByCampuses", countByCampuses);
-rentalsRoute.get("/countByType", countByType);
 rentalsRoute.get("/room/:id", getRentalRooms);
 
 export default rentalsRoute;

@@ -38,9 +38,9 @@ app.use("/api/hostels", hostelsRoute);
 app.use("/api/rentals", rentalsRoute);
 app.use("/api/apartments", apartmentsRoute);
 app.use("/api/rooms", roomsRoute);
-app.use("/api/hostelrooms", hostelRoomsRoute);
-app.use("/api/rentalrooms", rentalRoomsRoute);
-app.use("/api/apartmentrooms", apartmentRoomsRoute);
+app.use("/api/hostelsrooms", hostelRoomsRoute);
+app.use("/api/rentalsrooms", rentalRoomsRoute);
+app.use("/api/apartmentsrooms", apartmentRoomsRoute);
 
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {

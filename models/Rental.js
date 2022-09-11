@@ -6,23 +6,18 @@ const RentalSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        required: true,
     },
     campus: {
         type: String,
-        required: true,
     },
     village: {
         type: String,
-        required: true,
     },
     address: {
         type: String,
-        required: true,
     },
     phone: {
-        type: Number,
-        required: true,
+        type: String,
     },
     email: {
         type: String,
@@ -46,6 +41,9 @@ const RentalSchema = mongoose.Schema({
     },
     rooms: {
          type: [String] 
+    },
+    roomsdesc: {
+        type: String
     },
     cheapestPrice: {
         type: Number

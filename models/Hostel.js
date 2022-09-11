@@ -6,23 +6,18 @@ const HostelSchema = mongoose.Schema({
     },
     type: {
         type: String,
-        required: true,
     },
     campus: {
         type: String,
-        required: true,
     },
     village: {
         type: String,
-        required: true,
     },
     address: {
         type: String,
-        required: true,
     },
     phone: {
         type: String,
-        required: true,
     },
     email: {
         type: String,
@@ -37,6 +32,9 @@ const HostelSchema = mongoose.Schema({
         type: String
     },
     desc: {
+        type: String
+    },
+    roomsdesc: {
         type: String
     },
     rating: {
