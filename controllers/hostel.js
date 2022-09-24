@@ -5,11 +5,11 @@ import { createError } from "../Utils/error.js";
 
 export const createHostel = async (req,res)=>{
     const newHostel = Hostel(req.body);
-    try {
+    try {console.log(newHostel)
         const savedHostel = await newHostel.save();
         res.status(200).json(savedHostel);
     } catch (error) {
-        next(createError(403, "Sorry, hostel creation failed. Please try again")); 
+        console.log( "Sorry, hostel creation failed. Please try again"); 
     }  
 }
 
