@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import cors from "cors";
+//import cors from "cors";
 import mongoose from "mongoose";
 import authRoute from  './routes/auth.js';
 import hotelsRoute from  './routes/hotels.js';
@@ -15,7 +15,7 @@ import rentalRoomsRoute from "./routes/rentalRooms.js";
 import apartmentRoomsRoute from "./routes/apartmentRooms.js";
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 dotenv.config();
 app.use(function(req, res, next){
   res.header("Access-Control-Allow-Origin",'*');
