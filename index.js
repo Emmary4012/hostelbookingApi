@@ -15,7 +15,7 @@ import rentalRoomsRoute from "./routes/rentalRooms.js";
 import apartmentRoomsRoute from "./routes/apartmentRooms.js";
 
 const app = express();
-app.use(cors({origin:"*",}));
+app.use(cors({origin:["https://hostel-booking.netlify.app/","http://localhost:5000/","https://hostel-booking.netlify.app/"]}));
 dotenv.config();
 
 const connect = async () => {    
