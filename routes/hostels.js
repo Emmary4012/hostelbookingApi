@@ -9,7 +9,8 @@ hostelsRoute.post("/", createHostel);
 // verifyAdmin,
 
 //UPDATE
-hostelsRoute.put("/:id", verifyAdmin ,updateHostel);
+hostelsRoute.put("/:id" ,updateHostel);
+//, verifyAdmin
 
 //DELETE
 hostelsRoute.delete("/:id", verifyAdmin,deleteHostel);

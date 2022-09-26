@@ -13,19 +13,20 @@ export const createHostel = async (req,res)=>{
     }  
 }
 
-export const updateHostel = async (req,res)=>{
+export const updateHostel = async (req,res)=>{console.log("reached")
     try {
         const updatedHostel = await Hostel.findByIdAndUpdate(req.params.id, {$set: req.body}, {new:true})
         res.status(200).json(updatedHostel);
     } catch (err) {
-        next(createError(403, "Sorry, hostel update failed. Please try again"));
+        console.log("Sorry, hostel update failed. Please try again");
+        //next(createError(403, "Sorry, hostel update failed. Please try again"));
     }
    
 }
 
 export const deleteHostel = async (req,res)=>{
     try {
-        await Hotel.findByIdAndDelete(req.params.id);
+        await Hostel.findByIdAndDelete(req.params.id);
         res.status(200).json("Hostel has been successfully deleted");
     } catch (err) {
         next(createError(403, "Sorry, hostel deletion failed. Please try again"));

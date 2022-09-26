@@ -1,11 +1,11 @@
 import Apartment from "../models/Apartment.js";
-import Room from "../models/Room.js";
+import ApartmentRoom from "../models/ApartmentRooms.js";
 import { createError } from "../Utils/error.js";
 
 export const createRoom = async (req,res,next)=>{
 
     const apartmentId = req.params['propertyId'];    
-    const newRoom = new Room(req.body);
+    const newRoom = new ApartmentRoom(req.body);
   
     try {
         const savedRoom = await newRoom.save();
@@ -27,7 +27,7 @@ export const createRoom = async (req,res,next)=>{
 export const updateRoom = async (req,res)=>{
 
     try {
-        const updatedRoom = await Room.findByIdAndUpdate(req.params.id, {$set: req.body}, {new:true})
+        const updatedRoom = await ApartmentRoom.findByIdAndUpdate(req.params.id, {$set: req.body}, {new:true})
         res.status(200).json(updatedRoom);
     } catch (err) {
         next(createError(403, "Sorry, couln't update the room. Please try again")); 
@@ -37,7 +37,7 @@ export const updateRoom = async (req,res)=>{
 
 export const updateRoomAvailability = async (req, res, next) => { 
     try {
-      await Room.updateOne(
+      await ApartmentRoom.updateOne(
         { "roomNumbers._id": req.params.id },
         {
           $push: {
@@ -54,7 +54,7 @@ export const updateRoomAvailability = async (req, res, next) => {
 export const deleteRoom = async (req,res,next)=>{
     const ApartmentId = req.params.Apartmentid; 
     try {
-        await Room.findByIdAndDelete(req.params.id);
+        await ApartmentRoom.findByIdAndDelete(req.params.id);
 
         try {
             await Apartment.findByIdAndUpdate(ApartmentId, {
@@ -85,7 +85,7 @@ export const getRoom = async (req,res)=>{
 export const getRooms = async (req,res,next)=>{
     
     try {
-        const rooms = await Room.find()
+        const rooms = await ApartmentRoom.find()
         res.status(200).json(rooms)
     } catch (err) {
         next(createError(403,"Sorry, could't get the rooms. Please try again inorder to get the rooms"));
